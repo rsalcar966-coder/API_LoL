@@ -1,0 +1,201 @@
+<!-- ══════════════════════════════════════════════════════════
+     LoL Hub — Contact Page
+     ══════════════════════════════════════════════════════════ -->
+
+<section class="contact" id="contact-section">
+  <!-- Background effects -->
+  <div class="contact__backdrop" aria-hidden="true">
+    <div class="contact__orb contact__orb--gold"></div>
+    <div class="contact__orb contact__orb--blue"></div>
+  </div>
+
+  <div class="contact__container">
+    <!-- Header -->
+    <div class="contact__header">
+      <span class="contact__tag">Hablemos</span>
+      <h1 class="contact__title" id="contact-title">
+        Contacta con <span class="text-gold">Nosotros</span>
+      </h1>
+      <p class="contact__subtitle">
+        ¿Tienes una sugerencia, encontraste un bug o simplemente quieres charlar sobre LoL? Estamos aquí.
+      </p>
+    </div>
+
+    <div class="contact__grid">
+      <!-- ═══ LEFT: Contact Form ═══ -->
+      <div class="contact__form-wrapper" id="contact-form-wrapper">
+        <form class="contact__form" (ngSubmit)="onSubmit()" #contactForm="ngForm" id="contact-form">
+          <!-- Invocador Name -->
+          <div class="form-group">
+            <label for="summoner-name" class="form-label">
+              <svg class="form-label__icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              Nombre de Invocador
+            </label>
+            <input
+              type="text"
+              id="summoner-name"
+              name="summonerName"
+              class="form-input"
+              placeholder="Faker#KR1"
+              [(ngModel)]="formData.summonerName"
+              required
+            />
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email" class="form-label">
+              <svg class="form-label__icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-input"
+              placeholder="invocador@lol.com"
+              [(ngModel)]="formData.email"
+              required
+            />
+          </div>
+
+          <!-- Asunto (select) -->
+          <div class="form-group">
+            <label for="subject" class="form-label">
+              <svg class="form-label__icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+              Asunto
+            </label>
+            <select
+              id="subject"
+              name="subject"
+              class="form-input form-select"
+              [(ngModel)]="formData.subject"
+              required
+            >
+              <option value="" disabled>Selecciona un tema...</option>
+              <option value="suggestion">💡 Sugerencia</option>
+              <option value="bug">🐛 Reportar Bug</option>
+              <option value="champion">🗡️ Solicitar Campeón</option>
+              <option value="feedback">⭐ Feedback General</option>
+              <option value="other">📩 Otro</option>
+            </select>
+          </div>
+
+          <!-- Mensaje -->
+          <div class="form-group">
+            <label for="message" class="form-label">
+              <svg class="form-label__icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9" />
+                <path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z" />
+              </svg>
+              Mensaje
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              class="form-input form-textarea"
+              placeholder="Escribe tu mensaje aquí..."
+              rows="5"
+              [(ngModel)]="formData.message"
+              required
+            ></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="form-submit"
+            id="contact-submit"
+            [class.form-submit--sent]="submitted"
+            [disabled]="submitted"
+          >
+            @if (submitted) {
+              <svg class="form-submit__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              ¡Mensaje Enviado!
+            } @else {
+              Enviar Mensaje
+              <svg class="form-submit__icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m22 2-7 20-4-9-9-4z" />
+                <path d="M22 2 11 13" />
+              </svg>
+            }
+          </button>
+        </form>
+      </div>
+
+      <!-- ═══ RIGHT: Info Cards ═══ -->
+      <div class="contact__info" id="contact-info">
+        <!-- Discord -->
+        <div class="info-card" id="info-discord">
+          <div class="info-card__icon-wrapper info-card__icon-wrapper--purple">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/>
+            </svg>
+          </div>
+          <div class="info-card__content">
+            <h3 class="info-card__title">Discord</h3>
+            <p class="info-card__text">Únete a nuestra comunidad</p>
+            <a href="#" class="info-card__link">discord.gg/lolhub →</a>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="info-card" id="info-email">
+          <div class="info-card__icon-wrapper info-card__icon-wrapper--gold">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+          </div>
+          <div class="info-card__content">
+            <h3 class="info-card__title">Email</h3>
+            <p class="info-card__text">Respuesta en 24-48h</p>
+            <a href="mailto:contacto@lolhub.gg" class="info-card__link">contacto&#64;lolhub.gg →</a>
+          </div>
+        </div>
+
+        <!-- GitHub -->
+        <div class="info-card" id="info-github">
+          <div class="info-card__icon-wrapper info-card__icon-wrapper--cyan">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </div>
+          <div class="info-card__content">
+            <h3 class="info-card__title">GitHub</h3>
+            <p class="info-card__text">Contribuye al proyecto</p>
+            <a href="#" class="info-card__link">github.com/lolhub →</a>
+          </div>
+        </div>
+
+        <!-- FAQ teaser -->
+        <div class="info-card info-card--highlight" id="info-faq">
+          <div class="info-card__icon-wrapper info-card__icon-wrapper--gold">
+            <span style="font-size: 1.3rem;">❓</span>
+          </div>
+          <div class="info-card__content">
+            <h3 class="info-card__title">FAQ</h3>
+            <p class="info-card__text">¿De dónde vienen los datos? ¿Con qué frecuencia se actualizan? Encuentra respuestas a las preguntas más comunes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
