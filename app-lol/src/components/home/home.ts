@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CharacterService } from '../../app/services/character';
 
 interface Role {
   name: string;
@@ -21,7 +22,7 @@ interface Champion {
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {
+export class Home implements OnInit {
   championCount = 168;
 
   roles: Role[] = [
@@ -52,54 +53,28 @@ export class Home {
     },
   ];
 
-  featuredChampions: Champion[] = [
-    {
-      name: 'Yasuo',
-      title: 'El Imperdonable',
-      role: 'Mid',
-      imageUrl: 'Yasuo.jpg',
-      winRate: 49.8,
-      pickRate: 10.2,
-    },
-    {
-      name: 'Jinx',
-      title: 'La Bala Perdida',
-      role: 'ADC',
-      imageUrl: 'Jinx_.jpg',
-      winRate: 52.1,
-      pickRate: 8.7,
-    },
-    {
-      name: 'Thresh',
-      title: 'El Carcelero',
-      role: 'Support',
-      imageUrl: 'Thresh.jpg',
-      winRate: 51.3,
-      pickRate: 12.4,
-    },
-    {
-      name: 'Lee Sin',
-      title: 'El Monje Ciego',
-      role: 'Jungla',
-      imageUrl: 'Lee Sin.jpg',
-      winRate: 48.9,
-      pickRate: 14.1,
-    },
-    {
-      name: 'Darius',
-      title: 'La Mano de Noxus',
-      role: 'Top',
-      imageUrl: 'Darius.jpg',
-      winRate: 51.7,
-      pickRate: 7.3,
-    },
-    {
-      name: 'Ahri',
-      title: 'La Zorra de Nueve Colas',
-      role: 'Mid',
-      imageUrl: 'Ahri.jpg',
-      winRate: 52.4,
-      pickRate: 9.8,
-    },
-  ];
+  featuredChampions: Champion[] = [];
+  isLoading = true;
+
+  constructor(private characterService: CharacterService) {}
+
+  ngOnInit(): void {
+    this.characterService.getCharacters().subscribe({
+      next: (data) => {
+        this.featuredChampions = data.map((char) => ({
+          name: char.name,
+          title: char.title,
+          role: char.roles && char.roles.length > 0 ? char.roles[0] : 'Desconocido',
+          imageUrl: char.thumbnailUrl,
+          winRate: 50.0,
+          pickRate: 10.0,
+        }));
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Error al cargar los campeones:', err);
+        this.isLoading = false;
+      },
+    });
+  }
 }

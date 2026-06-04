@@ -96,31 +96,54 @@
     </div>
 
     <div class="featured__grid" id="featured-grid">
-      @for (champ of featuredChampions; track champ.name) {
-        <div class="champ-card" [id]="'champ-' + champ.name.toLowerCase()">
-          <div class="champ-card__image-wrapper">
-            <img
-              [src]="champ.imageUrl"
-              [alt]="champ.name"
-              class="champ-card__image"
-              loading="lazy"
-            />
-            <div class="champ-card__overlay"></div>
-            <span class="champ-card__role-badge">{{ champ.role }}</span>
-          </div>
-          <div class="champ-card__info">
-            <h3 class="champ-card__name">{{ champ.name }}</h3>
-            <p class="champ-card__title">{{ champ.title }}</p>
-            <div class="champ-card__stats-row">
-              <div class="champ-card__winrate" [class.champ-card__winrate--high]="champ.winRate >= 52">
-                {{ champ.winRate }}% WR
-              </div>
-              <div class="champ-card__pickrate">
-                {{ champ.pickRate }}% Pick
+      @if (isLoading) {
+        @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+          <div class="champ-card champ-card--skeleton">
+            <div class="champ-card__image-wrapper">
+              <div class="champ-card__image champ-card__image--placeholder"></div>
+              <div class="champ-card__overlay"></div>
+            </div>
+            <div class="champ-card__info">
+              <div class="skeleton-line skeleton-line--title"></div>
+              <div class="skeleton-line skeleton-line--subtitle"></div>
+              <div class="champ-card__stats-row">
+                <div class="skeleton-line skeleton-line--stat"></div>
+                <div class="skeleton-line skeleton-line--stat"></div>
               </div>
             </div>
           </div>
-        </div>
+        }
+      } @else {
+        @for (champ of featuredChampions; track champ.name) {
+          <div class="champ-card" [id]="'champ-' + champ.name.toLowerCase()">
+            <div class="champ-card__image-wrapper">
+              <img
+                [src]="champ.imageUrl"
+                [alt]="champ.name"
+                class="champ-card__image"
+                loading="lazy"
+              />
+              <div class="champ-card__overlay"></div>
+              <span class="champ-card__role-badge">{{ champ.role }}</span>
+            </div>
+            <div class="champ-card__info">
+              <h3 class="champ-card__name">{{ champ.name }}</h3>
+              <p class="champ-card__title">{{ champ.title }}</p>
+              <div class="champ-card__stats-row">
+                <div class="champ-card__winrate" [class.champ-card__winrate--high]="champ.winRate >= 52">
+                  {{ champ.winRate }}% WR
+                </div>
+                <div class="champ-card__pickrate">
+                  {{ champ.pickRate }}% Pick
+                </div>
+              </div>
+            </div>
+          </div>
+        } @empty {
+          <div class="featured__empty">
+            <p class="featured__empty-text">No se encontraron campeones. Verifica que el servidor esté en línea.</p>
+          </div>
+        }
       }
     </div>
   </div>

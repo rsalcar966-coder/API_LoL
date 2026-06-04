@@ -554,6 +554,72 @@
   color: var(--color-text-muted);
 }
 
+/* ── Skeleton Loading State ── */
+.champ-card--skeleton {
+  pointer-events: none;
+}
+
+.champ-card__image--placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.03) 30%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 70%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-line {
+  border-radius: 4px;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.04) 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.04) 70%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-line--title {
+  width: 70%;
+  height: 14px;
+  margin-bottom: 6px;
+}
+
+.skeleton-line--subtitle {
+  width: 50%;
+  height: 10px;
+  margin-bottom: var(--space-sm);
+}
+
+.skeleton-line--stat {
+  width: 48px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+@keyframes skeletonShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Empty State ── */
+.featured__empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--space-2xl) var(--space-lg);
+}
+
+.featured__empty-text {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
 
 /* ══════════════════════════════════════════════════════════
    CTA BANNER
