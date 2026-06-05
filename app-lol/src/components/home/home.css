@@ -249,6 +249,7 @@
   cursor: pointer;
   transition: var(--transition-base);
   text-transform: uppercase;
+  text-decoration: none;
 }
 
 .hero__btn--primary {

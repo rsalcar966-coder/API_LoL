@@ -4,7 +4,7 @@
 
   <div class="header__container">
     <!-- Logo -->
-    <a routerLink="/" class="header__logo" id="header-logo">
+    <a routerLink="/inicio" class="header__logo" id="header-logo">
       <img src="LoL.ico" alt="LoL Hub" class="header__logo-icon" />
       <div class="header__logo-text">
         <span class="header__logo-title">LoL</span>
@@ -16,8 +16,8 @@
     <nav class="header__nav" id="header-nav" aria-label="Navegación principal">
       <ul class="header__nav-list">
         <li class="header__nav-item">
-          <a routerLink="/" class="header__nav-link" routerLinkActive="header__nav-link--active"
-            [routerLinkActiveOptions]="{exact: true}" id="nav-inicio">
+          <a routerLink="/inicio" class="header__nav-link" routerLinkActive="header__nav-link--active"
+            id="nav-inicio">
             <span class="header__nav-icon"></span>
             Inicio
           </a>
@@ -30,7 +30,7 @@
           </a>
         </li>
         <li class="header__nav-item">
-          <a routerLink="/stats" class="header__nav-link" routerLinkActive="header__nav-link--active" id="nav-stats">
+          <a routerLink="/estadisticas" class="header__nav-link" routerLinkActive="header__nav-link--active" id="nav-stats">
             <span class="header__nav-icon"></span>
             Estadísticas
           </a>
@@ -39,6 +39,12 @@
           <a routerLink="/builds" class="header__nav-link" routerLinkActive="header__nav-link--active" id="nav-builds">
             <span class="header__nav-icon"></span>
             Builds
+          </a>
+        </li>
+        <li class="header__nav-item">
+          <a routerLink="/contacto" class="header__nav-link" routerLinkActive="header__nav-link--active" id="nav-contacto">
+            <span class="header__nav-icon"></span>
+            Contáctanos
           </a>
         </li>
       </ul>
@@ -67,10 +73,11 @@
   <div class="header__mobile-nav" [class.header__mobile-nav--open]="menuOpen" id="mobile-nav">
     <nav aria-label="Navegación móvil">
       <ul class="header__mobile-list">
-        <li><a routerLink="/" class="header__mobile-link" (click)="closeMenu()"> Inicio</a></li>
+        <li><a routerLink="/inicio" class="header__mobile-link" (click)="closeMenu()"> Inicio</a></li>
         <li><a routerLink="/campeones" class="header__mobile-link" (click)="closeMenu()"> Campeones</a></li>
-        <li><a routerLink="/stats" class="header__mobile-link" (click)="closeMenu()"> Estadísticas</a></li>
+        <li><a routerLink="/estadisticas" class="header__mobile-link" (click)="closeMenu()"> Estadísticas</a></li>
         <li><a routerLink="/builds" class="header__mobile-link" (click)="closeMenu()"> Builds</a></li>
+        <li><a routerLink="/contacto" class="header__mobile-link" (click)="closeMenu()"> Contáctanos</a></li>
       </ul>
     </nav>
   </div>
