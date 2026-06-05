@@ -9,6 +9,7 @@ interface Role {
 }
 
 interface Champion {
+  id: string;
   name: string;
   title: string;
   role: string;
@@ -63,6 +64,7 @@ export class Home implements OnInit {
     this.characterService.getCharacters().subscribe({
       next: (data) => {
         this.featuredChampions = data.map((char) => ({
+          id: char.id,
           name: char.name,
           title: char.title,
           role: char.roles && char.roles.length > 0 ? char.roles[0] : 'Desconocido',

@@ -4,11 +4,13 @@ import { Contact } from '../components/contact/contact';
 import { ChampionsComponent } from '../components/champions/champions';
 import { StatisticsComponent } from '../components/statistics/statistics';
 import { BuildsComponent } from '../components/builds/builds';
+import { CharacterDetail } from '../components/character-detail/character-detail';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'inicio', pathMatch: 'full' },
     { path: 'inicio', component: Home },
     { path: 'campeones', component: ChampionsComponent },
+    { path: 'campeon/:id', component: CharacterDetail },
     { path: 'estadisticas', component: StatisticsComponent },
     { path: 'builds', component: BuildsComponent },
     { path: 'contacto', component: Contact },
