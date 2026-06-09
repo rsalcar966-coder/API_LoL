@@ -11,9 +11,9 @@ interface Role {
 interface Champion {
   id: string;
   name: string;
-  title: string;
+  title?: string;
   role: string;
-  imageUrl: string;
+  imageUrl?: string;
   winRate: number;
   pickRate: number;
 }
@@ -67,8 +67,8 @@ export class Home implements OnInit {
           id: char.id,
           name: char.name,
           title: char.title,
-          role: char.roles && char.roles.length > 0 ? char.roles[0] : 'Desconocido',
-          imageUrl: char.thumbnailUrl,
+          role: char.roles && char.roles.length > 0 ? char.roles[0] : (char.role ?? 'Desconocido'),
+          imageUrl: char.thumbnailUrl ?? char.imageUrl,
           winRate: 50.0,
           pickRate: 10.0,
         }));

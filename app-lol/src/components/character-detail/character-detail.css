@@ -1,1 +1,291 @@
-/* Character Detail styles */
+/* ══════════════════════════════════════════════════════════
+   Character Detail — LoL Dark Theme
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Hero Banner ── */
+.detail-hero {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-2xl) var(--space-xl);
+  background: linear-gradient(135deg, #0a0a0f 0%, #16213e 50%, #0a0a0f 100%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.detail-hero__backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(200, 155, 60, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.detail-hero__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.detail-hero__avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  border: 2px solid var(--color-gold-500);
+  box-shadow: 0 0 24px rgba(200, 155, 60, 0.3);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.detail-hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.detail-hero__role {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-blue-accent);
+  background: rgba(10, 200, 185, 0.1);
+  padding: 2px 10px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.detail-hero__name {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-gold-300);
+  line-height: 1.1;
+  text-shadow: 0 0 20px rgba(200, 170, 110, 0.25);
+}
+
+.detail-hero__title {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* ── Lore ── */
+.detail-lore {
+  padding: var(--space-xl);
+  background: var(--color-bg-surface);
+}
+
+.detail-lore__container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.detail-lore__text {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  border-left: 3px solid var(--color-gold-700);
+  padding-left: var(--space-lg);
+}
+
+/* ══════════════════════════════════════════════════════════
+   Combat Stats Section
+   ══════════════════════════════════════════════════════════ */
+.combat-stats {
+  padding: var(--space-2xl) var(--space-xl);
+  background: var(--color-bg-dark);
+}
+
+.combat-stats__container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.combat-stats__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-gold-300);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.combat-stats__icon {
+  font-size: 1.3rem;
+}
+
+/* ── Stat Grid ── */
+.combat-stats__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* ── Individual Stat Row ── */
+.stat-row {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: var(--space-md) var(--space-lg);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.stat-row:hover {
+  border-color: var(--color-border-glow);
+  box-shadow: var(--shadow-glow);
+}
+
+.stat-row__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.stat-row__icon {
+  font-size: 1.15rem;
+  width: 28px;
+  text-align: center;
+}
+
+.stat-row__label {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: 0.03em;
+  flex: 1;
+}
+
+.stat-row__value {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.05em;
+}
+
+/* ── Progress Bar Track ── */
+.stat-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.stat-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 9.5%,
+    rgba(0, 0, 0, 0.3) 9.5%,
+    rgba(0, 0, 0, 0.3) 10%
+  );
+  z-index: 2;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+/* ── Progress Bar Fill (animated) ── */
+.stat-bar__fill {
+  height: 100%;
+  border-radius: 6px;
+  position: relative;
+  transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: statFillGlow 2s ease-in-out infinite alternate;
+}
+
+/* ── Attack  — Crimson Red ── */
+.stat-bar__fill--attack {
+  background: linear-gradient(90deg, #8b1a1a 0%, #dc3545 50%, #ff6b6b 100%);
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ── Defense — Emerald Green ── */
+.stat-bar__fill--defense {
+  background: linear-gradient(90deg, #1a6b3a 0%, #28a745 50%, #5beb7e 100%);
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ── Magic   — Arcane Blue ── */
+.stat-bar__fill--magic {
+  background: linear-gradient(90deg, #1a3a8b 0%, #3b82f6 50%, #60a5fa 100%);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ── Difficulty — Royal Gold ── */
+.stat-bar__fill--difficulty {
+  background: linear-gradient(90deg, #785a28 0%, #c89b3c 50%, #f5d675 100%);
+  box-shadow: 0 0 10px rgba(200, 155, 60, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Subtle pulsing glow */
+@keyframes statFillGlow {
+  0%   { filter: brightness(1); }
+  100% { filter: brightness(1.15); }
+}
+
+/* ── Loading State ── */
+.detail-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  min-height: 50vh;
+  color: var(--color-text-muted);
+}
+
+.detail-loading__spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-gold-500);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.detail-loading__text {
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .detail-hero__content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .detail-hero__role {
+    margin: 0 auto;
+  }
+
+  .detail-hero__name {
+    font-size: 1.8rem;
+  }
+
+  .detail-hero__avatar {
+    width: 110px;
+    height: 110px;
+  }
+
+  .combat-stats__title {
+    font-size: 1.2rem;
+  }
+}
