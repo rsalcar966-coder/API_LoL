@@ -1,32 +1,25 @@
-<!-- ═══ Contenedor principal del campeón ═══ -->
+<div *ngIf="errorMessage"
+  style="color: #ff4655; text-align: center; padding: 40px; font-weight: bold; background: #1a1c23; border: 1px solid #ff4655; margin: 20px; border-radius: 8px;">
+  ⚠️ {{ errorMessage }}
+</div>
+
 <div *ngIf="character">
 
-  <!-- ═══ Cabecera del campeón ═══ -->
   <section class="detail-hero">
     <div class="detail-hero__backdrop" aria-hidden="true"></div>
     <div class="detail-hero__content">
-      <img
-        *ngIf="character.imageUrl"
-        [src]="character.imageUrl"
-        [alt]="character.name"
-        class="detail-hero__avatar"
-      />
+      <img *ngIf="character.thumbnailUrl" [src]="character.thumbnailUrl" [alt]="character.name"
+        class="detail-hero__avatar" />
       <div class="detail-hero__text">
-        <span class="detail-hero__role" *ngIf="character.role">{{ character.role }}</span>
+        <span class="detail-hero__role" *ngIf="character.roles && character.roles.length > 0">
+          {{ character.roles.join(' / ') }}
+        </span>
         <h1 class="detail-hero__name">{{ character.name }}</h1>
         <p class="detail-hero__title" *ngIf="character.title">{{ character.title }}</p>
       </div>
     </div>
   </section>
 
-  <!-- ═══ Lore ═══ -->
-  <section class="detail-lore" *ngIf="character.lore">
-    <div class="detail-lore__container">
-      <p class="detail-lore__text">{{ character.lore }}</p>
-    </div>
-  </section>
-
-  <!-- ═══ Estadísticas de Combate (solo si existen) ═══ -->
   <section class="combat-stats" *ngIf="character.info">
     <div class="combat-stats__container">
       <h2 class="combat-stats__title">
@@ -35,7 +28,6 @@
       </h2>
 
       <div class="combat-stats__grid">
-        <!-- Ataque -->
         <div class="stat-row">
           <div class="stat-row__header">
             <span class="stat-row__icon stat-row__icon--attack">🗡️</span>
@@ -43,14 +35,10 @@
             <span class="stat-row__value">{{ character.info.attack }} / 10</span>
           </div>
           <div class="stat-bar">
-            <div
-              class="stat-bar__fill stat-bar__fill--attack"
-              [style.width.%]="character.info.attack * 10"
-            ></div>
+            <div class="stat-bar__fill stat-bar__fill--attack" [style.width.%]="character.info.attack * 10"></div>
           </div>
         </div>
 
-        <!-- Defensa -->
         <div class="stat-row">
           <div class="stat-row__header">
             <span class="stat-row__icon stat-row__icon--defense">🛡️</span>
@@ -58,14 +46,10 @@
             <span class="stat-row__value">{{ character.info.defense }} / 10</span>
           </div>
           <div class="stat-bar">
-            <div
-              class="stat-bar__fill stat-bar__fill--defense"
-              [style.width.%]="character.info.defense * 10"
-            ></div>
+            <div class="stat-bar__fill stat-bar__fill--defense" [style.width.%]="character.info.defense * 10"></div>
           </div>
         </div>
 
-        <!-- Magia -->
         <div class="stat-row">
           <div class="stat-row__header">
             <span class="stat-row__icon stat-row__icon--magic">✨</span>
@@ -73,14 +57,10 @@
             <span class="stat-row__value">{{ character.info.magic }} / 10</span>
           </div>
           <div class="stat-bar">
-            <div
-              class="stat-bar__fill stat-bar__fill--magic"
-              [style.width.%]="character.info.magic * 10"
-            ></div>
+            <div class="stat-bar__fill stat-bar__fill--magic" [style.width.%]="character.info.magic * 10"></div>
           </div>
         </div>
 
-        <!-- Dificultad -->
         <div class="stat-row">
           <div class="stat-row__header">
             <span class="stat-row__icon stat-row__icon--difficulty">🎯</span>
@@ -88,10 +68,8 @@
             <span class="stat-row__value">{{ character.info.difficulty }} / 10</span>
           </div>
           <div class="stat-bar">
-            <div
-              class="stat-bar__fill stat-bar__fill--difficulty"
-              [style.width.%]="character.info.difficulty * 10"
-            ></div>
+            <div class="stat-bar__fill stat-bar__fill--difficulty" [style.width.%]="character.info.difficulty * 10">
+            </div>
           </div>
         </div>
       </div>
@@ -100,8 +78,7 @@
 
 </div>
 
-<!-- ═══ Loading (desaparece cuando character deja de ser null) ═══ -->
-<section class="detail-loading" *ngIf="!character">
+<section class="detail-loading" *ngIf="!character && !errorMessage">
   <div class="detail-loading__spinner"></div>
   <p class="detail-loading__text">Cargando campeón…</p>
 </section>
