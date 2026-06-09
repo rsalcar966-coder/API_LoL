@@ -9,11 +9,9 @@ import { Character } from '../../model/character';
 export class CharacterService {
   private apiUrl = 'http://localhost:8080/api/characters';
 
-  /** Stream reactivo: emite la lista filtrada cada vez que cambia */
   private filteredChampions$ = new BehaviorSubject<Character[] | null>(null);
   readonly filtered$ = this.filteredChampions$.asObservable();
 
-  /** Indica si hay un filtro activo */
   private activeFilter$ = new BehaviorSubject<string | null>(null);
   readonly activeFilter = this.activeFilter$.asObservable();
 
@@ -31,7 +29,6 @@ export class CharacterService {
     return this.http.get<Character[]>(`${this.apiUrl}/filter/tank`);
   }
 
-  /** Aplica un filtro y emite los resultados a todos los suscriptores */
   applyTankFilter(): void {
     this.activeFilter$.next('Tank');
     this.getTanks().subscribe({
@@ -43,7 +40,6 @@ export class CharacterService {
     });
   }
 
-  /** Limpia el filtro (vuelve a mostrar todos) */
   clearFilter(): void {
     this.activeFilter$.next(null);
     this.filteredChampions$.next(null);

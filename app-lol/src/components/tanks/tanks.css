@@ -1,14 +1,6 @@
-/* ══════════════════════════════════════════════════════════
-   LoL Hub — Tanks Showcase Styles
-   ══════════════════════════════════════════════════════════ */
-
 :host {
   display: block;
 }
-
-/* ══════════════════════════════════════════════════════════
-   HERO BANNER
-   ══════════════════════════════════════════════════════════ */
 
 .tanks-hero {
   position: relative;
@@ -27,7 +19,6 @@
   pointer-events: none;
 }
 
-/* Floating green-tinted orbs */
 .tanks-hero__orb {
   position: absolute;
   border-radius: 50%;
@@ -58,7 +49,6 @@
   100% { transform: translate(30px, -20px) scale(1.1); }
 }
 
-/* ── Hero Content ── */
 .tanks-hero__content {
   position: relative;
   z-index: 1;
@@ -72,7 +62,6 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Badge ── */
 .tanks-hero__badge {
   display: inline-flex;
   align-items: center;
@@ -93,7 +82,6 @@
   font-size: 0.9rem;
 }
 
-/* ── Title ── */
 .tanks-hero__title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3rem);
@@ -126,7 +114,6 @@
   margin: 0 auto var(--space-xl);
 }
 
-/* ── Hero Stats ── */
 .tanks-hero__stats {
   display: flex;
   align-items: center;
@@ -163,11 +150,6 @@
   background: linear-gradient(180deg, transparent, rgba(40, 167, 69, 0.4), transparent);
 }
 
-
-/* ══════════════════════════════════════════════════════════
-   ERROR STATE
-   ══════════════════════════════════════════════════════════ */
-
 .tanks-error {
   padding: var(--space-xl);
 }
@@ -194,11 +176,6 @@
   color: #ff4655;
   font-weight: 600;
 }
-
-
-/* ══════════════════════════════════════════════════════════
-   GRID SECTION
-   ══════════════════════════════════════════════════════════ */
 
 .tanks-grid-section {
   background: var(--color-bg-dark);
@@ -247,17 +224,11 @@
   color: #5beb7e;
 }
 
-/* ── Card Grid ── */
 .tanks-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: var(--space-lg);
 }
-
-
-/* ══════════════════════════════════════════════════════════
-   TANK CARD
-   ══════════════════════════════════════════════════════════ */
 
 .tank-card {
   position: relative;
@@ -282,7 +253,6 @@
     0 0 20px rgba(40, 167, 69, 0.12);
 }
 
-/* ── Image ── */
 .tank-card__image-wrapper {
   position: relative;
   width: 100%;
@@ -315,7 +285,6 @@
   pointer-events: none;
 }
 
-/* Shield icon */
 .tank-card__shield {
   position: absolute;
   top: var(--space-sm);
@@ -340,7 +309,6 @@
   transform: scale(1);
 }
 
-/* ── Body ── */
 .tank-card__body {
   padding: var(--space-md) var(--space-lg) var(--space-lg);
 }
@@ -367,7 +335,6 @@
   line-height: 1.4;
 }
 
-/* ── Role Tags ── */
 .tank-card__roles {
   display: flex;
   flex-wrap: wrap;
@@ -393,7 +360,6 @@
   border-color: rgba(40, 167, 69, 0.3);
 }
 
-/* ── Hover decorations ── */
 .tank-card__glow {
   position: absolute;
   top: -40%;
@@ -426,11 +392,6 @@
 .tank-card:hover .tank-card__border-line {
   transform: translateX(-50%) scaleX(1);
 }
-
-
-/* ══════════════════════════════════════════════════════════
-   SKELETON LOADING
-   ══════════════════════════════════════════════════════════ */
 
 .tank-card--skeleton {
   pointer-events: none;
@@ -484,11 +445,6 @@
   100% { background-position: -200% 0; }
 }
 
-
-/* ══════════════════════════════════════════════════════════
-   EMPTY STATE
-   ══════════════════════════════════════════════════════════ */
-
 .tanks-empty {
   text-align: center;
   padding: var(--space-2xl);
@@ -499,11 +455,6 @@
   color: var(--color-text-muted);
   font-style: italic;
 }
-
-
-/* ══════════════════════════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
   .tanks-hero {

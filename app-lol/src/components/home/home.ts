@@ -67,7 +67,6 @@ export class Home implements OnInit, OnDestroy {
   constructor(private characterService: CharacterService) {}
 
   ngOnInit(): void {
-    // Carga inicial de todos los campeones
     this.characterService.getCharacters().subscribe({
       next: (data) => {
         this.allChampions = this.mapChampions(data);
@@ -80,10 +79,8 @@ export class Home implements OnInit, OnDestroy {
       },
     });
 
-    // Escucha cambios de filtro emitidos desde el footer (u otro componente)
     this.filterSub = this.characterService.filtered$.subscribe((filtered) => {
       if (filtered === null) {
-        // Sin filtro → muestra todos
         this.featuredChampions = this.allChampions;
         this.activeFilter = null;
       } else {

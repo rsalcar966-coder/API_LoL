@@ -1,8 +1,3 @@
-<!-- ══════════════════════════════════════════════════════════
-     LoL Hub — Tanks Showcase Page
-     ══════════════════════════════════════════════════════════ -->
-
-<!-- ═══ HERO BANNER ═══ -->
 <section class="tanks-hero" id="tanks-hero">
   <div class="tanks-hero__backdrop" aria-hidden="true">
     <div class="tanks-hero__orb tanks-hero__orb--1"></div>
@@ -39,7 +34,6 @@
   </div>
 </section>
 
-<!-- ═══ ERROR STATE ═══ -->
 <div class="tanks-error" *ngIf="errorMessage">
   <div class="tanks-error__box">
     <span class="tanks-error__icon">⚠️</span>
@@ -47,7 +41,6 @@
   </div>
 </div>
 
-<!-- ═══ LOADING STATE ═══ -->
 <section class="tanks-grid-section" *ngIf="isLoading">
   <div class="tanks-grid-section__container">
     <div class="tanks-grid">
@@ -65,7 +58,6 @@
   </div>
 </section>
 
-<!-- ═══ TANK CARDS GRID ═══ -->
 <section class="tanks-grid-section" *ngIf="!isLoading && !errorMessage">
   <div class="tanks-grid-section__container">
     <div class="tanks-grid-section__header">
@@ -85,7 +77,6 @@
         [routerLink]="['/campeon', tank.id]"
         [id]="'tank-' + tank.name.toLowerCase()"
       >
-        <!-- Image -->
         <div class="tank-card__image-wrapper">
           <img
             *ngIf="tank.thumbnailUrl"
@@ -98,7 +89,6 @@
           <div class="tank-card__shield" aria-hidden="true">🛡️</div>
         </div>
 
-        <!-- Info -->
         <div class="tank-card__body">
           <h3 class="tank-card__name">{{ tank.name }}</h3>
           <p class="tank-card__title" *ngIf="tank.title">{{ tank.title }}</p>
@@ -113,13 +103,11 @@
           </div>
         </div>
 
-        <!-- Hover glow -->
         <div class="tank-card__glow" aria-hidden="true"></div>
         <div class="tank-card__border-line" aria-hidden="true"></div>
       </a>
     </div>
 
-    <!-- Empty -->
     <div class="tanks-empty" *ngIf="tanks.length === 0">
       <p class="tanks-empty__text">No se encontraron campeones tanque.</p>
     </div>
