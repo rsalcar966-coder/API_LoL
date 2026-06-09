@@ -26,10 +26,8 @@ public class Character {
     private List<String> roles;
     private String thumbnailUrl;
 
-    // Aquí mapeamos el objeto "info" que viene de MongoDB
     private Info info;
 
-    // IMPORTANTE: Esta clase Info tiene que estar DENTRO de la clase Character
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
