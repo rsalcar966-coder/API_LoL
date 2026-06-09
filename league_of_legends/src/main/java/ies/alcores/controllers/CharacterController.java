@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/characters")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 
 public class CharacterController {
 
@@ -50,5 +50,10 @@ public class CharacterController {
     public ResponseEntity<Character> update(@PathVariable final String id, @RequestBody final Character character) {
         Optional<Character> updated = this.characterService.update(id, character);
         return updated.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/filter/multiplerole")
+    public ResponseEntity<List<Character>> getMultipleRole() {
+        return ResponseEntity.ok(this.characterService.findMultipleRole());
     }
 }
