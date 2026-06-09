@@ -15,7 +15,7 @@ export class CharacterService {
   private activeFilter$ = new BehaviorSubject<string | null>(null);
   readonly activeFilter = this.activeFilter$.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getCharacters(): Observable<Character[]> {
     return this.http.get<Character[]>(this.apiUrl);
@@ -29,19 +29,5 @@ export class CharacterService {
     return this.http.get<Character[]>(`${this.apiUrl}/filter/tank`);
   }
 
-  applyTankFilter(): void {
-    this.activeFilter$.next('Tank');
-    this.getTanks().subscribe({
-      next: (data) => this.filteredChampions$.next(data),
-      error: (err) => {
-        console.error('Error filtrando tanques:', err);
-        this.filteredChampions$.next([]);
-      },
-    });
-  }
 
-  clearFilter(): void {
-    this.activeFilter$.next(null);
-    this.filteredChampions$.next(null);
-  }
 }

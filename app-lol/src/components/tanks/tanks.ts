@@ -16,19 +16,14 @@ export class TanksComponent implements OnInit {
   isLoading = true;
   errorMessage = '';
 
-  constructor(private characterService: CharacterService) {}
+  constructor(private characterService: CharacterService) { }
 
   ngOnInit(): void {
     this.characterService.getTanks().subscribe({
       next: (data) => {
         this.tanks = data;
-        this.isLoading = false;
       },
-      error: (err) => {
-        console.error('Error cargando tanques:', err);
-        this.errorMessage = 'No se pudieron cargar los tanques. Verifica que el backend esté activo.';
-        this.isLoading = false;
-      },
+
     });
   }
 }
