@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CharacterService } from '../../app/services/character';
+import { Character } from '../../model/character';
 
 interface Role {
   name: string;
@@ -24,7 +26,7 @@ interface Champion {
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home implements OnInit {
+export class Home implements OnInit, OnDestroy {
   championCount = 168;
 
   roles: Role[] = [
@@ -56,22 +58,20 @@ export class Home implements OnInit {
   ];
 
   featuredChampions: Champion[] = [];
+  allChampions: Champion[] = [];
   isLoading = true;
+  activeFilter: string | null = null;
+
+  private filterSub!: Subscription;
 
   constructor(private characterService: CharacterService) {}
 
   ngOnInit(): void {
+    // Carga inicial de todos los campeones
     this.characterService.getCharacters().subscribe({
       next: (data) => {
-        this.featuredChampions = data.map((char) => ({
-          id: char.id,
-          name: char.name,
-          title: char.title,
-          role: char.roles && char.roles.length > 0 ? char.roles[0] : (char.role ?? 'Desconocido'),
-          imageUrl: char.thumbnailUrl ?? char.imageUrl,
-          winRate: 50.0,
-          pickRate: 10.0,
-        }));
+        this.allChampions = this.mapChampions(data);
+        this.featuredChampions = this.allChampions;
         this.isLoading = false;
       },
       error: (err) => {
@@ -79,5 +79,36 @@ export class Home implements OnInit {
         this.isLoading = false;
       },
     });
+
+    // Escucha cambios de filtro emitidos desde el footer (u otro componente)
+    this.filterSub = this.characterService.filtered$.subscribe((filtered) => {
+      if (filtered === null) {
+        // Sin filtro → muestra todos
+        this.featuredChampions = this.allChampions;
+        this.activeFilter = null;
+      } else {
+        this.featuredChampions = this.mapChampions(filtered);
+      }
+    });
+
+    this.characterService.activeFilter.subscribe(
+      (filter) => (this.activeFilter = filter)
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.filterSub?.unsubscribe();
+  }
+
+  private mapChampions(data: Character[]): Champion[] {
+    return data.map((char) => ({
+      id: char.id,
+      name: char.name,
+      title: char.title,
+      role: char.roles && char.roles.length > 0 ? char.roles[0] : (char.role ?? 'Desconocido'),
+      imageUrl: char.thumbnailUrl ?? char.imageUrl,
+      winRate: 50.0,
+      pickRate: 10.0,
+    }));
   }
 }

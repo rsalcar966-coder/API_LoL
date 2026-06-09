@@ -1,0 +1,544 @@
+/* ══════════════════════════════════════════════════════════
+   LoL Hub — Tanks Showcase Styles
+   ══════════════════════════════════════════════════════════ */
+
+:host {
+  display: block;
+}
+
+/* ══════════════════════════════════════════════════════════
+   HERO BANNER
+   ══════════════════════════════════════════════════════════ */
+
+.tanks-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 45vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl) var(--space-xl);
+  background: linear-gradient(160deg, #0a0f1a 0%, #0d1b2a 40%, #1a1a2e 100%);
+}
+
+.tanks-hero__backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Floating green-tinted orbs */
+.tanks-hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: orbFloat 8s ease-in-out infinite alternate;
+}
+
+.tanks-hero__orb--1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(40, 167, 69, 0.15) 0%, transparent 70%);
+  top: -20%;
+  left: -5%;
+}
+
+.tanks-hero__orb--2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(10, 200, 185, 0.1) 0%, transparent 70%);
+  bottom: -15%;
+  right: -5%;
+  animation-delay: 4s;
+}
+
+@keyframes orbFloat {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, -20px) scale(1.1); }
+}
+
+/* ── Hero Content ── */
+.tanks-hero__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 700px;
+  animation: fadeUp 0.8s ease-out;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Badge ── */
+.tanks-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #5beb7e;
+  background: rgba(40, 167, 69, 0.1);
+  border: 1px solid rgba(40, 167, 69, 0.25);
+  border-radius: 100px;
+  padding: var(--space-xs) var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.tanks-hero__badge-icon {
+  font-size: 0.9rem;
+}
+
+/* ── Title ── */
+.tanks-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.tanks-hero__accent {
+  display: inline-block;
+  background: linear-gradient(135deg, #28a745 0%, #5beb7e 50%, #0ac8b9 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: tankShimmer 4s ease-in-out infinite;
+}
+
+@keyframes tankShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+.tanks-hero__subtitle {
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  max-width: 560px;
+  margin: 0 auto var(--space-xl);
+}
+
+/* ── Hero Stats ── */
+.tanks-hero__stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xl);
+  animation: fadeUp 0.8s ease-out 0.3s both;
+}
+
+.tanks-hero__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.tanks-hero__stat-value {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #5beb7e;
+}
+
+.tanks-hero__stat-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.tanks-hero__stat-divider {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(180deg, transparent, rgba(40, 167, 69, 0.4), transparent);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   ERROR STATE
+   ══════════════════════════════════════════════════════════ */
+
+.tanks-error {
+  padding: var(--space-xl);
+}
+
+.tanks-error__box {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: rgba(255, 70, 85, 0.06);
+  border: 1px solid rgba(255, 70, 85, 0.3);
+  border-radius: 10px;
+}
+
+.tanks-error__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.tanks-error__text {
+  font-size: 0.9rem;
+  color: #ff4655;
+  font-weight: 600;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   GRID SECTION
+   ══════════════════════════════════════════════════════════ */
+
+.tanks-grid-section {
+  background: var(--color-bg-dark);
+  padding: var(--space-xl) 0 var(--space-2xl);
+}
+
+.tanks-grid-section__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+.tanks-grid-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tanks-grid-section__title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.tanks-grid-section__count {
+  font-weight: 400;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+}
+
+.tanks-grid-section__back {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.tanks-grid-section__back:hover {
+  color: #5beb7e;
+}
+
+/* ── Card Grid ── */
+.tanks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-lg);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   TANK CARD
+   ══════════════════════════════════════════════════════════ */
+
+.tank-card {
+  position: relative;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+  text-decoration: none;
+  color: inherit;
+}
+
+.tank-card:hover {
+  border-color: rgba(40, 167, 69, 0.5);
+  transform: translateY(-6px);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(40, 167, 69, 0.12);
+}
+
+/* ── Image ── */
+.tank-card__image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--color-bg-surface);
+}
+
+.tank-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform var(--transition-slow);
+}
+
+.tank-card:hover .tank-card__image {
+  transform: scale(1.1);
+}
+
+.tank-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 30%,
+    rgba(10, 10, 15, 0.4) 60%,
+    rgba(10, 10, 15, 0.92) 100%
+  );
+  pointer-events: none;
+}
+
+/* Shield icon */
+.tank-card__shield {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  font-size: 1.2rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 15, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(40, 167, 69, 0.3);
+  border-radius: 8px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: var(--transition-base);
+}
+
+.tank-card:hover .tank-card__shield {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Body ── */
+.tank-card__body {
+  padding: var(--space-md) var(--space-lg) var(--space-lg);
+}
+
+.tank-card__name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0.03em;
+  margin-bottom: 3px;
+  transition: color var(--transition-base);
+}
+
+.tank-card:hover .tank-card__name {
+  color: #5beb7e;
+}
+
+.tank-card__title {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-bottom: var(--space-sm);
+  line-height: 1.4;
+}
+
+/* ── Role Tags ── */
+.tank-card__roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tank-card__role-tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  transition: var(--transition-base);
+}
+
+.tank-card__role-tag--primary {
+  color: #5beb7e;
+  background: rgba(40, 167, 69, 0.1);
+  border-color: rgba(40, 167, 69, 0.3);
+}
+
+/* ── Hover decorations ── */
+.tank-card__glow {
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(40, 167, 69, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+  pointer-events: none;
+}
+
+.tank-card:hover .tank-card__glow {
+  opacity: 1;
+}
+
+.tank-card__border-line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 70%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #28a745, transparent);
+  transition: transform var(--transition-base);
+  pointer-events: none;
+}
+
+.tank-card:hover .tank-card__border-line {
+  transform: translateX(-50%) scaleX(1);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   SKELETON LOADING
+   ══════════════════════════════════════════════════════════ */
+
+.tank-card--skeleton {
+  pointer-events: none;
+}
+
+.tank-card__image--placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.03) 30%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-line {
+  border-radius: 4px;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.04) 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.04) 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-line--name {
+  width: 65%;
+  height: 14px;
+  margin-bottom: 6px;
+}
+
+.skeleton-line--title {
+  width: 85%;
+  height: 10px;
+  margin-bottom: 10px;
+}
+
+.skeleton-line--roles {
+  width: 40%;
+  height: 18px;
+  border-radius: 5px;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   EMPTY STATE
+   ══════════════════════════════════════════════════════════ */
+
+.tanks-empty {
+  text-align: center;
+  padding: var(--space-2xl);
+}
+
+.tanks-empty__text {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .tanks-hero {
+    min-height: 35vh;
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .tanks-hero__stats {
+    gap: var(--space-md);
+  }
+
+  .tanks-hero__stat-value {
+    font-size: 1.2rem;
+  }
+
+  .tanks-grid-section__container {
+    padding: 0 var(--space-md);
+  }
+
+  .tanks-grid-section__header {
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: center;
+  }
+
+  .tanks-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .tanks-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}

@@ -14,22 +14,18 @@ public class CharacterService {
     @Autowired
     private CharacterRepository characterRepository;
 
-    //Obtiene todos los personajes
     public List<Character> findAll() {
         return this.characterRepository.findAll();
     }
 
-    //Obtiene un personaje dado el id
     public Optional<Character> findById(final String id) {
         return this.characterRepository.findById(id);
     }
 
-    //Dado un character lo persiste en base de datos
     public Optional<Character> save(final Character character) {
         return Optional.of(this.characterRepository.save(character));
     }
 
-    //Dado un id de character, lo elimina
     public Optional<Character> delete(final String id) {
         return this.characterRepository.findById(id)
                 .map(character -> {
@@ -38,17 +34,18 @@ public class CharacterService {
                 });
     }
 
-    // Dado un id y un JSON de un Character, lo actualiza
     public Optional<Character> update(String id, Character character) {
-        // Le asignamos el ID que viene de la URL al personaje
         character.setId(id);
 
-        // Buscamos si existe y, si es así, lo guardamos actualizado
         return this.characterRepository.findById(id)
                 .map(c -> this.characterRepository.save(character));
     }
 
     public List<Character> findMultipleRole() {
         return this.characterRepository.findCharacterWithTwoRoles();
+    }
+
+    public List<Character> findTanks() {
+        return this.characterRepository.findTanks();
     }
 }

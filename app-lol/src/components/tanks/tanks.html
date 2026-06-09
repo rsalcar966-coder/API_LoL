@@ -1,0 +1,127 @@
+<!-- ══════════════════════════════════════════════════════════
+     LoL Hub — Tanks Showcase Page
+     ══════════════════════════════════════════════════════════ -->
+
+<!-- ═══ HERO BANNER ═══ -->
+<section class="tanks-hero" id="tanks-hero">
+  <div class="tanks-hero__backdrop" aria-hidden="true">
+    <div class="tanks-hero__orb tanks-hero__orb--1"></div>
+    <div class="tanks-hero__orb tanks-hero__orb--2"></div>
+  </div>
+
+  <div class="tanks-hero__content">
+    <span class="tanks-hero__badge">
+      <span class="tanks-hero__badge-icon">🛡️</span>
+      Filtro de Rol
+    </span>
+    <h1 class="tanks-hero__title">
+      Campeones <span class="tanks-hero__accent">Tanque</span>
+    </h1>
+    <p class="tanks-hero__subtitle">
+      Los guardianes del equipo. Absorben daño, inician peleas y protegen a sus aliados con una resistencia inquebrantable.
+    </p>
+    <div class="tanks-hero__stats">
+      <div class="tanks-hero__stat">
+        <span class="tanks-hero__stat-value">{{ tanks.length }}</span>
+        <span class="tanks-hero__stat-label">Tanques</span>
+      </div>
+      <div class="tanks-hero__stat-divider"></div>
+      <div class="tanks-hero__stat">
+        <span class="tanks-hero__stat-value">🛡️</span>
+        <span class="tanks-hero__stat-label">Alta Defensa</span>
+      </div>
+      <div class="tanks-hero__stat-divider"></div>
+      <div class="tanks-hero__stat">
+        <span class="tanks-hero__stat-value">⚔️</span>
+        <span class="tanks-hero__stat-label">Iniciadores</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ERROR STATE ═══ -->
+<div class="tanks-error" *ngIf="errorMessage">
+  <div class="tanks-error__box">
+    <span class="tanks-error__icon">⚠️</span>
+    <p class="tanks-error__text">{{ errorMessage }}</p>
+  </div>
+</div>
+
+<!-- ═══ LOADING STATE ═══ -->
+<section class="tanks-grid-section" *ngIf="isLoading">
+  <div class="tanks-grid-section__container">
+    <div class="tanks-grid">
+      <div class="tank-card tank-card--skeleton" *ngFor="let i of [1,2,3,4,5,6,7,8]">
+        <div class="tank-card__image-wrapper">
+          <div class="tank-card__image tank-card__image--placeholder"></div>
+        </div>
+        <div class="tank-card__body">
+          <div class="skeleton-line skeleton-line--name"></div>
+          <div class="skeleton-line skeleton-line--title"></div>
+          <div class="skeleton-line skeleton-line--roles"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TANK CARDS GRID ═══ -->
+<section class="tanks-grid-section" *ngIf="!isLoading && !errorMessage">
+  <div class="tanks-grid-section__container">
+    <div class="tanks-grid-section__header">
+      <h2 class="tanks-grid-section__title">
+        Todos los Tanques
+        <span class="tanks-grid-section__count">({{ tanks.length }})</span>
+      </h2>
+      <a routerLink="/inicio" class="tanks-grid-section__back">
+        ← Volver al inicio
+      </a>
+    </div>
+
+    <div class="tanks-grid">
+      <a
+        class="tank-card"
+        *ngFor="let tank of tanks"
+        [routerLink]="['/campeon', tank.id]"
+        [id]="'tank-' + tank.name.toLowerCase()"
+      >
+        <!-- Image -->
+        <div class="tank-card__image-wrapper">
+          <img
+            *ngIf="tank.thumbnailUrl"
+            [src]="tank.thumbnailUrl"
+            [alt]="tank.name"
+            class="tank-card__image"
+            loading="lazy"
+          />
+          <div class="tank-card__overlay"></div>
+          <div class="tank-card__shield" aria-hidden="true">🛡️</div>
+        </div>
+
+        <!-- Info -->
+        <div class="tank-card__body">
+          <h3 class="tank-card__name">{{ tank.name }}</h3>
+          <p class="tank-card__title" *ngIf="tank.title">{{ tank.title }}</p>
+          <div class="tank-card__roles" *ngIf="tank.roles && tank.roles.length > 0">
+            <span
+              class="tank-card__role-tag"
+              *ngFor="let role of tank.roles"
+              [class.tank-card__role-tag--primary]="role === 'Tank'"
+            >
+              {{ role }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Hover glow -->
+        <div class="tank-card__glow" aria-hidden="true"></div>
+        <div class="tank-card__border-line" aria-hidden="true"></div>
+      </a>
+    </div>
+
+    <!-- Empty -->
+    <div class="tanks-empty" *ngIf="tanks.length === 0">
+      <p class="tanks-empty__text">No se encontraron campeones tanque.</p>
+    </div>
+  </div>
+</section>
